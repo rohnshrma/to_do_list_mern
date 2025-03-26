@@ -1,17 +1,17 @@
 import jwt from "jsonwebtoken";
 
-const protect = (req, res, next) => {
+const authenticateUser = (req, res, next) => {
   let token = req.header("Authorization");
   if (!token) {
     return res.status(401).json({ message: "Not Authorized" });
   }
   try {
-    const decoded = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET);
-    req.user = decoded;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded.id;
     next();
   } catch (error) {
     res.status(401).json({ message: "Invalid Token" });
   }
 };
 
-export default protect;
+export default authenticateUser;
