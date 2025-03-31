@@ -13,7 +13,7 @@ connectDB();
 app.use(express.json());
 
 app.use("/api/tasks", taskRoutes);
-app.use("/api/users", userRoutesRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(process.env.PORT || 4000, () => {
   console.log("Server started on port :", process.env.PORT || 5000);
