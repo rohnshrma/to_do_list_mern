@@ -7,6 +7,8 @@ export const createTask = async (req, res) => {
     // Destructure task details from the request body
     const { title, description, dueDate, priority, repeat } = req.body;
 
+    console.log("req body => ", req.body);
+
     // Create a new task in the database
     // 'await' is used because Task.create() is an asynchronous operation
     const task = await Task.create({
@@ -18,6 +20,7 @@ export const createTask = async (req, res) => {
       userId: req.userId, // Associate the task with the logged-in user (userId must be set in authentication middleware)
     });
 
+    console.log("newly added task => ", task);
     // Send a response with status 201 (Created) and return the created task
     res.status(201).json({ task });
   } catch (error) {

@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 const TaskSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  title: { type: String, required: true },
   description: { type: String, required: true },
   dueDate: Date,
   priority: { type: String, required: true },
-  completed: Boolean,
+  completed: { type: Boolean, default: false },
   repeat: {
     type: String,
     enum: ["none", "daily", "weekly", "monthly"],
